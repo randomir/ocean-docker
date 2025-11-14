@@ -6,7 +6,13 @@
 
 FROM python:3.13-windowsservercore
 
+# Install Microsoft Visual C++ 14.0 or greater (required for dwave-gate==0.3.4 build for python 3.14)
+RUN powershell -Command \
+    Invoke-WebRequest -Uri https://aka.ms/vs/16/release/vs_installer.exe -OutFile vs_installer.exe; \
+    Start-Process vs_installer.exe -ArgumentList '--quiet', '--wait', '--norestart', '--add', 'Microsoft.VisualCpp.Tools.HostX86.x64', '--add', 'Microsoft.VisualStudio.Workload.VCTools' -NoNewWindow -Wait; \
+    Remove-Item -Force vs_installer.exe
+
 RUN pip install --no-cache-dir \
-        dwave-ocean-sdk==9.0.0
+        dwave-ocean-sdk==9.1.0
 
 CMD ["python"]

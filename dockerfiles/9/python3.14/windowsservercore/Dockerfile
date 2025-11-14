@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM python:3.12-windowsservercore
+FROM python:3.14-windowsservercore
 
 # Install Microsoft Visual C++ 14.0 or greater (required for dwave-gate==0.3.4 build for python 3.14)
 RUN powershell -Command \
